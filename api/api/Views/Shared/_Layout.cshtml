@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrap.css")
+
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <style>
+        .view-assignment {
+            overflow: scroll;
+            height: 200px;
+        }
+    </style>
+    <div style="margin: 30px;">
+        <div class="row">
+            @RenderBody()
+
+            <div class="row">
+                <div class="col-lg-1">
+                    #:
+                </div>
+                <div class="col-lg-2">
+                    Class
+                </div>
+                <div class="col-lg-9">
+                    URL
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-1">
+                    01:
+                </div>
+                <div class="col-lg-2">
+                    <input id="input_class1" type="text" style="width: 100%" placeholder="Class" />
+                </div>
+                <div class="col-lg-9">
+                    <input id="input_url1" type="text" style="width: 100%" placeholder="URL" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-1">
+                    02:
+                </div>
+                <div class="col-lg-2">
+                    <input id="input_class2" type="text" style="width: 100%" placeholder="Class" />
+                </div>
+                <div class="col-lg-9">
+                    <input id="input_url2" type="text" style="width: 100%" placeholder="URL" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-1">
+                    03:
+                </div>
+                <div class="col-lg-2">
+                    <input id="input_class3" type="text" style="width: 100%" placeholder="Class" />
+                </div>
+                <div class="col-lg-9">
+                    <input id="input_url3" type="text" style="width: 100%" placeholder="URL" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-1">
+                    04:
+                </div>
+                <div class="col-lg-2">
+                    <input id="input_class4" type="text" style="width: 100%" placeholder="Class" />
+                </div>
+                <div class="col-lg-9">
+                    <input id="input_url4" type="text" style="width: 100%" placeholder="URL" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-1">
+                    05:
+                </div>
+                <div class="col-lg-2">
+                    <input id="input_class5" type="text" style="width: 100%" placeholder="Class" />
+                </div>
+                <div class="col-lg-9">
+                    <input id="input_url5" type="text" style="width: 100%" placeholder="URL" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-1">
+                    06:
+                </div>
+                <div class="col-lg-2">
+                    <input id="input_class6" type="text" style="width: 100%" placeholder="Class" />
+                </div>
+                <div class="col-lg-9">
+                    <input id="input_url6" type="text" style="width: 100%" placeholder="URL" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-1">
+                    07:
+                </div>
+                <div class="col-lg-2">
+                    <input id="input_class7" type="text" style="width: 100%" placeholder="Class" />
+                </div>
+                <div class="col-lg-9">
+                    <input id="input_url7" type="text" style="width: 100%" placeholder="URL" />
+                </div>
+            </div>
+
+            <div class="row" style="padding-top: 1em;">
+                <div class="col-lg-10">
+                    <input id="get_assignments" type="submit" value="GetHtml" name="Get Html" />
+                </div>
+            </div>
+            <div class="view-assignment">
+                <div id="view_assignments_0"></div>
+            </div>
+            <div class="view-assignment">
+                <div id="view_assignments_1"></div>
+            </div>
+            <div class="view-assignment">
+                <div id="view_assignments_2"></div>
+            </div>
+            <div class="view-assignment">
+                <div id="view_assignments_3"></div>
+            </div>
+            <div class="view-assignment">
+                <div id="view_assignments_4"></div>
+            </div>
+            <div class="view-assignment">
+                <div id="view_assignments_5"></div>
+            </div>
+            <div class="view-assignment">
+                <div id="view_assignments_6"></div>
+            </div>
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/Scripts/jquery-ui-1.10.3.min.js")
+            @RenderSection("scripts", required: false)
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        console.log("start home view");
+
+        var urls = [];
+
+        function getClasses() {
+            var getclass1 = localStorage.getItem("class_1");
+            $("#input_class1").val(getclass1);
+            var getclass2 = localStorage.getItem("class_2");
+            $("#input_class2").val(getclass2);
+            var getclass3 = localStorage.getItem("class_3");
+            $("#input_class3").val(getclass3);
+            var getclass4 = localStorage.getItem("class_4");
+            $("#input_class4").val(getclass4);
+            var getclass5 = localStorage.getItem("class_5");
+            $("#input_class5").val(getclass5);
+        }
+
+        function getUrls() {
+            var geturl1 = localStorage.getItem("url_1");
+            $("#input_url1").val(geturl1);
+            var geturl2 = localStorage.getItem("url_2");
+            $("#input_url2").val(geturl2);
+            var geturl3 = localStorage.getItem("url_3");
+            $("#input_url3").val(geturl3);
+            var geturl4 = localStorage.getItem("url_4");
+            $("#input_url4").val(geturl4);
+            var geturl5 = localStorage.getItem("url_5");
+            $("#input_url5").val(geturl5);
+        }
+
+        function storeClasses() {
+            var class1 = $("#input_class1").val();
+            localStorage.setItem("class_1", class1);
+            var class2 = $("#input_class2").val();
+            localStorage.setItem("class_2", class2);
+            var class3 = $("#input_class3").val();
+            localStorage.setItem("class_3", class3);
+            var class4 = $("#input_class4").val();
+            localStorage.setItem("class_4", class4);
+            var class5 = $("#input_class5").val();
+            localStorage.setItem("class_5", class5);
+            var class6 = $("#input_class6").val();
+            localStorage.setItem("class_6", class6);
+            var class7 = $("#input_class7").val();
+            localStorage.setItem("class_7", class7);
+        }
+
+        function storeUrls() {
+
+            var seturl1 = $("#input_url1").val();
+            localStorage.setItem("url_1", seturl1);
+            var seturl2 = $("#input_url2").val();
+            localStorage.setItem("url_2", seturl2);
+            var seturl3 = $("#input_url3").val();
+            localStorage.setItem("url_3", seturl3);
+            var seturl4 = $("#input_url4").val();
+            localStorage.setItem("url_4", seturl4);
+            var seturl5 = $("#input_url5").val();
+            localStorage.setItem("url_5", seturl5);
+            var seturl6 = $("#input_url6").val();
+            localStorage.setItem("url_6", seturl6);
+            var seturl7 = $("#input_url7").val();
+            localStorage.setItem("url_7", seturl7);
+            urls.push(seturl1);
+            urls.push(seturl2);
+            urls.push(seturl3);
+            urls.push(seturl4);
+            urls.push(seturl5);
+            urls.push(seturl6);
+            urls.push(seturl7);
+        }
+
+        $(document).ready(function () {
+            console.log("document ready...");
+            console.log("getting classes...");
+            getClasses();
+            console.log("getting urls...");
+            getUrls();
+
+
+            $("#get_assignments").click(function () {
+                console.log("storing classes...");
+                storeClasses();
+                console.log("storing urls...");
+                storeUrls();
+                console.log(urls);
+                var count = 0;
+                for (var i = 0; i < urls.length; i++) {
+                    var seturl = urls[i];
+                    console.log(seturl);
+                    if (seturl.length > 0) {
+                        
+                        $.ajax({
+                            url: "/Assignments/GetAssignmentHtml?url=" + seturl,
+                            type: "GET",
+                            async: true,
+                            success: function (data) {
+                                
+                                if (!data) {
+                                    console.log("error!");
+                                } else {
+                                    console.log("success!");
+                                    console.log(data);
+                                    var id = "#view_assignments_" + count;
+                                    count++;
+                                    $(id).html(data.InnerHtml);
+                                    
+                                }
+                            },
+                            error: function (error) {
+                                alert("failed");
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
